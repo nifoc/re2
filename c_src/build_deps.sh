@@ -3,6 +3,8 @@ set -e
 
 test `basename $PWD` != "c_src" && cd c_src
 
+echo "$(uname -o) / $(uname -r) / $(uname -v) / $(uname -s)"
+
 case "$(uname -o)" in
     Msys*|Cygwin*)
         IS_WINDOWS=yes

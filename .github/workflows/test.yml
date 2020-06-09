@@ -67,8 +67,24 @@ jobs:
       - name: Run tests
         run: rebar3 eunit
 
-  test-windows:
+  test-windows-2016:
     runs-on: windows-2016
+    steps:
+      - uses: actions/checkout@v2
+      - run: choco install erlang rebar3
+      - run: |
+          Install-Module -Name posh-vs -Force
+          Install-PoshVs
+          . $profile
+      - name: Compile
+        run: |
+          rebar3 compile
+      - name: Run tests
+        run: |
+          rebar3 eunit
+
+  test-windows-latest:
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
       - run: choco install erlang rebar3
